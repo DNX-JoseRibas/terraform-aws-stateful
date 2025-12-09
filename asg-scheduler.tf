@@ -1,6 +1,6 @@
 resource "aws_autoscaling_schedule" "scale_down" {
   count                  = var.enable_schedule ? var.instance_count : 0
-  scheduled_action_name  = "${var.name}-${count.index}-scale-down"
+  scheduled_action_name  = "${var.name}-${count.index}-stop"
   min_size               = 0
   max_size               = 0
   desired_capacity       = 0
@@ -10,7 +10,7 @@ resource "aws_autoscaling_schedule" "scale_down" {
 
 resource "aws_autoscaling_schedule" "scale_up" {
   count                  = var.enable_schedule ? var.instance_count : 0
-  scheduled_action_name  = "${var.name}-${count.index}-scale-up"
+  scheduled_action_name  = "${var.name}-${count.index}-start"
   min_size               = 1
   max_size               = 1
   desired_capacity       = 1
